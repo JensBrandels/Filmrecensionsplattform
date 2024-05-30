@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const app = express();
 app.use(express.json());
+
 //here goes routes
 
 const mongoURI = process.env.DB_URI;
