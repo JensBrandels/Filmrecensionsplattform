@@ -11,8 +11,6 @@ movieRoute.post(
   async (req, res) => {
     try {
       const { title, director, releaseYear, genre } = req.body;
-      const userId = req.user.id;
-      const userRole = req.user.role;
 
       const checkIfExists = await Movie.findOne({
         title: title,
@@ -49,6 +47,24 @@ movieRoute.get(
     try {
       const allMovies = await Movie.find({});
       res.status(200).send(allMovies);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  }
+);
+
+movieRoute.get(
+  "/movies/:id",
+  authenticateToken,
+  checkRole(["admin", "user"]),
+  async (req, res) => {
+    try {
+      const movieId = req.params.id;
+      const foundMovie = await Movie.findById(movieId);
+      if (!foundMovie) {
+        return res.status(404).json({ error: "Movie not found" });
+      }
+      res.status(200).send(foundMovie);
     } catch (error) {
       res.status(500).send(error.message);
     }
