@@ -2,13 +2,13 @@
 
 Designa Mongoose-modeller för Movie, Review, och User med följande fält:
 
-    Movie: title, director, releaseYear, genre.
-    Review: movieId (referens till Movie), userId (referens till User), rating, comment, createdAt.
-    User: username, email, password, role.
+    Movie: title, director, releaseYear, genre. *****/////
+    Review: movieId (referens till Movie), userId (referens till User), rating,comment, createdAt. *****/////
+    User: username, email, password, role. *****/////
 
 Följande endpoints ska finnas med:
 
-    POST /movies: Lägg till en ny film.
+    POST /movies: Lägg till en ny film. *****/////
 
     GET /movies: Hämta en lista med alla filmer.
 
@@ -30,9 +30,9 @@ Följande endpoints ska finnas med:
 
     DELETE /reviews/:id: Ta bort en specifik recension.
 
-    POST /register: Registrera en ny användare.
+    POST /register: Registrera en ny användare. ******/////
 
-    POST /login: Logga in en användare
+    POST /login: Logga in en användare ******/////
 
 För Godkänt:
 
