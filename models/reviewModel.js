@@ -15,7 +15,11 @@ const reviewSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  requiredAt: {
+  comment: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
     type: Date,
     default: Date.now,
   },
@@ -23,4 +27,4 @@ const reviewSchema = mongoose.Schema({
 
 const Review = mongoose.model("review", reviewSchema);
 
-module.exports = { Movie };
+module.exports = { Review };

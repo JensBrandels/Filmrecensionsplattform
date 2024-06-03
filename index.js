@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const { userRoute } = require("./controllers/userControllers");
 const { movieRoute } = require("./controllers/movieControllers");
+const { reviewRoute } = require("./controllers/reviewControllers");
 require("dotenv").config();
 const app = express();
 app.use(express.json());
@@ -9,6 +10,7 @@ app.use(express.json());
 //here goes routes
 app.use("/", userRoute);
 app.use("/", movieRoute);
+app.use("/", reviewRoute);
 
 const mongoURI = process.env.DB_URI;
 
