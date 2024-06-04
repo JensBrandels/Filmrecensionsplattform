@@ -48,19 +48,19 @@ reviewRoute.get(
   checkRole(["admin", "user"]),
   async (req, res) => {
     try {
-      const movieId = req.params.id;
+      const reviewId = req.params.id;
 
-      const findMovieId = await Movie.findById(movieId);
+      const findReviewId = await Review.findById(reviewId);
 
-      if (!findMovieId) {
+      if (!findReviewId) {
         return res.status(400).send("Id is wrong");
       }
 
-      const foundMovie = await Movie.findById(movieId);
-      if (!foundMovie) {
-        return res.status(404).json({ error: "Movie not found" });
+      const foundReview = await Review.findById(reviewId);
+      if (!foundReview) {
+        return res.status(404).json({ error: "Review not found" });
       }
-      res.status(200).send(foundMovie);
+      res.status(200).send(foundReview);
     } catch (error) {
       res.status(500).send(error.message);
     }
@@ -70,26 +70,26 @@ reviewRoute.get(
 reviewRoute.delete(
   "/reviews/:id",
   authenticateToken,
-  checkRole(["admin"]),
+  checkRole(["admin", "user"]),
   async (req, res) => {
     try {
-      const movieId = req.params.id;
+      const reviewId = req.params.id;
 
-      const findMovieId = await Movie.findById(movieId);
+      const findReviewId = await Review.findById(reviewId);
 
-      if (!findMovieId) {
+      if (!findReviewId) {
         return res.status(400).send("Id is wrong");
       }
 
-      const deleteMovie = await Movie.findByIdAndDelete(movieId);
-      if (!deleteMovie) {
+      const deleteReview = await Review.findByIdAndDelete(reviewId);
+      if (!deleteReview) {
         return res.status(404).json({
-          error: "Movie not found and could therefore not be deleted!",
+          error: "review not found and could therefore not be deleted!",
         });
       }
       res
         .status(200)
-        .send({ msg: "deleted movie successfully", deleted: deleteMovie });
+        .send({ msg: "deleted review successfully", deleted: deleteReview });
     } catch (error) {
       res.status(500).send(error.message);
     }
@@ -99,53 +99,37 @@ reviewRoute.delete(
 reviewRoute.put(
   "/reviews/:id",
   authenticateToken,
-  checkRole(["admin"]),
+  checkRole(["admin", "user"]),
   async (req, res) => {
     try {
-      const movieId = req.params.id;
+      const reviewId = req.params.id;
 
-      const findMovieId = await Movie.findById(movieId);
+      const findReviewId = await Review.findById(reviewId);
 
-      if (!findMovieId) {
+      if (!findReviewId) {
         return res.status(400).send("Id is wrong");
       }
 
-      const { title, director, releaseYear, genre } = req.body;
+      const { rating, comment } = req.body;
 
-      // Check if another movie with the same attributes exists
-      const existingMovie = await Movie.findOne({
-        _id: { $ne: movieId }, // Exclude the current movie
-        title,
-        director,
-        releaseYear,
-        genre,
-      });
-
-      if (existingMovie) {
-        return res.status(400).json({
-          error:
-            "A movie with the same title, director, release year, and genre already exists.",
-        });
-      }
-
-      const updatedMovie = await Movie.findByIdAndUpdate(
-        movieId,
-        { title, director, releaseYear, genre },
+      const updatedReview = await Review.findByIdAndUpdate(
+        reviewId,
+        { rating, comment },
         {
           new: true,
           runValidators: true,
         }
       );
 
-      if (!updatedMovie) {
+      if (!updatedReview) {
         return res.status(404).json({
-          error: "Movie not found and could therefore not be updated!",
+          error: "Review not found and could therefore not be updated!",
         });
       }
 
       res
         .status(200)
-        .send({ msg: "Movie updated successfully!", update: updatedMovie });
+        .send({ msg: "Review updated successfully!", update: updatedReview });
     } catch (error) {
       res.status(400).send(error.message);
     }
