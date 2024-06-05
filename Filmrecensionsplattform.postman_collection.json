@@ -1,0 +1,460 @@
+{
+	"info": {
+		"_postman_id": "0824e42c-eaa6-417a-b9cd-4f25386c7222",
+		"name": "Filmrecensionsplattform",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32658633"
+	},
+	"item": [
+		{
+			"name": "account",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Tobias\",\r\n    \"email\": \"tobias@email.se\",\r\n    \"password\": \"Tobias\",\r\n    \"role\": \"user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Jens\",\r\n    \"email\": \"jens@email.se\",\r\n    \"password\": \"Jens\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/login",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Movies",
+			"item": [
+				{
+					"name": "Add movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTg5NzkyMWEyZmM0YWY2ZjZmOWJmOSIsInVzZXJuYW1lIjoiSmVucyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNzU3OTYxNywiZXhwIjoxNzE3NTg2ODE3fQ.IxJXNCfOlQ2vA7V8hCQ0GX-0gPSr2SEGUkkQHocFxZk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Lilo & Stitch\",\r\n    \"director\": \"Disney\",\r\n    \"releaseYear\": \"2007\",\r\n    \"genre\": \"Adventure\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/movies",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Movies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTg5NzkyMWEyZmM0YWY2ZjZmOWJmOSIsInVzZXJuYW1lIjoiSmVucyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNzQyMzk5MCwiZXhwIjoxNzE3NDMxMTkwfQ.1HuejxOwGg_Mkvov8-0ovsZmiDHvPwYZR0Z1gp5U74M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/movies",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "specific movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTllYWM3ZWU1OTM1NGUxZWZmYmJhMCIsInVzZXJuYW1lIjoiVG9iaWFzIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTcxNjk0MzQsImV4cCI6MTcxNzE3NjYzNH0.SqGAnhlHInCW2nsTSUmFO_wvZqc8YAbAFrrrgkYV8CE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/movies/6658b8314df0de0364f4f2fc",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies",
+								"6658b8314df0de0364f4f2fc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTg5NzkyMWEyZmM0YWY2ZjZmOWJmOSIsInVzZXJuYW1lIjoiSmVucyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNzU3OTYxNywiZXhwIjoxNzE3NTg2ODE3fQ.IxJXNCfOlQ2vA7V8hCQ0GX-0gPSr2SEGUkkQHocFxZk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/movies/665d8fa835387b5fa22fe7b9",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies",
+								"665d8fa835387b5fa22fe7b9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update movie",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTg5NzkyMWEyZmM0YWY2ZjZmOWJmOSIsInVzZXJuYW1lIjoiSmVucyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNzQxNDgyOSwiZXhwIjoxNzE3NDIyMDI5fQ.anzAR--C13jG8zHE2STDGjWkVioWx0L7ONtt50fzxC0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Sagan om ringen - kungens återkomst\",\r\n    \"director\": \"JRR Tolkien\",\r\n    \"releaseYear\": \"2003\",\r\n    \"genre\": \"Fantasy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/movies/665d8fe635387b5fa22fe7c5",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies",
+								"665d8fe635387b5fa22fe7c5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get specific movie and reviews",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTg5NzkyMWEyZmM0YWY2ZjZmOWJmOSIsInVzZXJuYW1lIjoiSmVucyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNzU3OTYxNywiZXhwIjoxNzE3NTg2ODE3fQ.IxJXNCfOlQ2vA7V8hCQ0GX-0gPSr2SEGUkkQHocFxZk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/movies/665d8fe635387b5fa22fe7c5/reviews",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies",
+								"665d8fe635387b5fa22fe7c5",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all movies average ratings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTg5NzkyMWEyZmM0YWY2ZjZmOWJmOSIsInVzZXJuYW1lIjoiSmVucyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNzU3OTYxNywiZXhwIjoxNzE3NTg2ODE3fQ.IxJXNCfOlQ2vA7V8hCQ0GX-0gPSr2SEGUkkQHocFxZk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/movies/ratings",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"movies",
+								"ratings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "add review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTg5NzkyMWEyZmM0YWY2ZjZmOWJmOSIsInVzZXJuYW1lIjoiSmVucyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNzQyMzk5MCwiZXhwIjoxNzE3NDMxMTkwfQ.1HuejxOwGg_Mkvov8-0ovsZmiDHvPwYZR0Z1gp5U74M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"movieId\": \"665d8fe635387b5fa22fe7c5\",\r\n    \"rating\": 5,\r\n    \"comment\": \"Best movie ever made\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/reviews",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All reviews",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTg5NzkyMWEyZmM0YWY2ZjZmOWJmOSIsInVzZXJuYW1lIjoiSmVucyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNzQyMzk5MCwiZXhwIjoxNzE3NDMxMTkwfQ.1HuejxOwGg_Mkvov8-0ovsZmiDHvPwYZR0Z1gp5U74M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/reviews",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get specific review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTg5NzYzMWEyZmM0YWY2ZjZmOWJmNSIsInVzZXJuYW1lIjoiRXJpayIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzE3NTAxMjIyLCJleHAiOjE3MTc1MDg0MjJ9.yi2dmmLo7pH9P-FQqxaoATaQDR7e9znNzKrgWPwcgWY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/reviews/665dcff68cbd8d0d7293c219",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								"665dcff68cbd8d0d7293c219"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTg5NzkyMWEyZmM0YWY2ZjZmOWJmOSIsInVzZXJuYW1lIjoiSmVucyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNzUwMjA0MSwiZXhwIjoxNzE3NTA5MjQxfQ.wepuPprQ6vYy1k97UleZgWJAmWCX4bhBH6PNcK8pKyM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/reviews/665eff8341c7d1f371bbfbe0",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								"665eff8341c7d1f371bbfbe0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTg5NzkyMWEyZmM0YWY2ZjZmOWJmOSIsInVzZXJuYW1lIjoiSmVucyIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTcxNzUwMjA0MSwiZXhwIjoxNzE3NTA5MjQxfQ.wepuPprQ6vYy1k97UleZgWJAmWCX4bhBH6PNcK8pKyM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rating\": 1,\r\n    \"comment\": \"Changed my mind, HP sucks!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/reviews/665efdb67a08c151a2b124d3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"reviews",
+								"665efdb67a08c151a2b124d3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

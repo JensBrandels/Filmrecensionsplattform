@@ -55,6 +55,54 @@ movieRoute.get(
 );
 
 movieRoute.get(
+  "/movies/ratings",
+  authenticateToken,
+  checkRole(["admin", "user"]),
+  async (req, res) => {
+    try {
+      const moviesWithRatings = await Movie.aggregate([
+        {
+          $lookup: {
+            from: "reviews",
+            localField: "_id",
+            foreignField: "movieId",
+            as: "reviews",
+          },
+        },
+        {
+          $unwind: {
+            path: "$reviews",
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+        {
+          $group: {
+            _id: "$_id",
+            title: { $first: "$title" },
+            averageRating: { $avg: "$reviews.rating" },
+            reviewCount: {
+              $sum: { $cond: [{ $ifNull: ["$reviews", false] }, 1, 0] },
+            },
+          },
+        },
+        {
+          $project: {
+            _id: 1,
+            title: 1,
+            averageRating: { $ifNull: ["$averageRating", "No ratings yet"] },
+            reviewCount: 1,
+          },
+        },
+      ]);
+
+      res.status(200).json(moviesWithRatings);
+    } catch (error) {
+      res.status(500).send(error.message);
+    }
+  }
+);
+
+movieRoute.get(
   "/movies/:id",
   authenticateToken,
   checkRole(["admin", "user"]),
