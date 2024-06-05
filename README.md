@@ -20,10 +20,11 @@ Följande endpoints ska finnas med:
     GET /reviews/:id: Hämta detaljer för en specifik recension.
     DELETE /reviews/:id: Ta bort en specifik recension.
     PUT /reviews/:id: Uppdatera en specifik recension.
+    GET /movies/:id/reviews: Hämta alla recensioner för en specifik film.
 
 Att göra:
 
-    GET /movies/:id/reviews: Hämta alla recensioner för en specifik film.
+    GET /movies/ratings: Hämta en lista med alla filmer och deras genomsnittliga betyg.
 
 För Godkänt:
 

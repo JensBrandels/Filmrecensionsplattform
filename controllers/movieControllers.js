@@ -2,6 +2,7 @@ const express = require("express");
 const { authenticateToken } = require("../middlewares/AuthMiddleware");
 const { checkRole } = require("../middlewares/AuthRole");
 const { Movie } = require("../models/movieModel");
+const { Review } = require("../models/reviewModel");
 const movieRoute = express.Router();
 
 movieRoute.post(
@@ -157,6 +158,43 @@ movieRoute.put(
       res
         .status(200)
         .send({ msg: "Movie updated successfully!", update: updatedMovie });
+    } catch (error) {
+      res.status(400).send(error.message);
+    }
+  }
+);
+
+movieRoute.get(
+  "/movies/:id/reviews",
+  authenticateToken,
+  checkRole(["admin", "user"]),
+  async (req, res) => {
+    try {
+      const movieId = req.params.id;
+      const findMovieId = await Movie.findById(movieId);
+
+      if (!findMovieId) {
+        return res.status(400).send("Id is wrong");
+      }
+
+      const foundMovie = await Movie.findById(movieId);
+      if (!foundMovie) {
+        return res.status(404).json({ error: "Movie not found" });
+      }
+
+      const foundReviewsForMovie = await Review.find({ movieId: movieId });
+      if (foundReviewsForMovie.length === 0) {
+        return res.status(200).json({
+          movie: foundMovie,
+          reviews: "This movie does not have any reviews yet!",
+        });
+      }
+      const showMovieAndReviews = {
+        movie: foundMovie,
+        reviews: foundReviewsForMovie,
+      };
+
+      res.status(200).send(showMovieAndReviews);
     } catch (error) {
       res.status(400).send(error.message);
     }
